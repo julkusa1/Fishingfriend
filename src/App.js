@@ -40,11 +40,14 @@ function Fishcard(props) {        //Kalakortin rivit
     <div className="fishcard">
       <div className="fishcard__line">
           <div className="fishcard__month">July</div>
-          <div className="fishcard__date">12</div>
+          <div className="fishcard__place">White river</div>
       </div>
       <div className="fishcard__line">
-          <div className="fishcard__place">Whiteriver</div>
+          <div className="fishcard__date">12</div>
           <div className="fishcard__fish">Riversalmon</div>
+      </div>
+      <div className="fishcard__line">
+          <div className="fishcard__year">2020</div>
           <div className="fishcard__amount">1</div>
       </div>
     </div>

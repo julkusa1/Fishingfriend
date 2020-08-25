@@ -47,7 +47,7 @@
   justify-content: space-between;
 }
 
-.fishcard__month, .fishcard__date {
+.fishcard__month, .fishcard__date, .fishcard__year {
   font-weight: bolder;
   color: #669
 }
