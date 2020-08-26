@@ -8,9 +8,9 @@
 }
   
 ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #4dd5ff;
 }
   
-::-webkit-srcollbar-thunb {
-    background-color: rgba(0, 0, 0, 0.1);
+::-webkit-srcollbar-thumb {
+    background-color: #009ccc;
 }

@@ -11,7 +11,7 @@ function Fishcard(props) {        //Kalakortin rivit
         </div>
         <div className="fishcard__line">
             <div className="fishcard__place">White river</div>
-            <div className="fishcard__weight">1,2</div>
+            <div className="fishcard__weight">1,2 kg</div>
         </div>
       </div>
     );

@@ -1,5 +1,12 @@
 .fishcard {                       
-    padding: 1em;
+    background-color: #e6f9ff;
+    border: 3px solid #0099cc;
+    box-shadow: 1px 2px 3px 1px #009ccc;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 10px;
+    border-radius: 15px;
 }
   
 .fishcard__line {
@@ -8,11 +15,12 @@
 }
   
 .fishcard__date {
-    font-weight: bolder;
-    color: #669
+   
+    font-size: 0.9em;
+    color: #009ccc
 }
   
 .fishcard__fish, .fishcard__place, .fishcard__weight {
-    font-size: 0.9em;
-    color: #666;
+    font-size: 0.8em;
+    color: #009ccc;
 }
