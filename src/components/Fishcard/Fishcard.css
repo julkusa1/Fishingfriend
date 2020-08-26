@@ -1,0 +1,18 @@
+.fishcard {                       
+    padding: 1em;
+}
+  
+.fishcard__line {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.fishcard__date {
+    font-weight: bolder;
+    color: #669
+}
+  
+.fishcard__fish, .fishcard__place, .fishcard__weight {
+    font-size: 0.9em;
+    color: #666;
+}
