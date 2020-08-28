@@ -8,6 +8,7 @@ import List from "./components/List/List";  //Nostetaan lista Appiin
 import Stats from "./components/Stats/Stats"; //Nostetaan tilasto Appiin
 import Settings from "./components/Settings/Settings";  //Nostetaan asetukset Appiin
 import Menu from "./components/Menu/Menu";    //Nostetaan menu Appiin
+import AddItem from "./components/AddItem/AddItem"; //Nostetaan lomake Appiin
 
 class App extends Component {                    //Nostetaan komponentit App funktioon reitittimellä
   
@@ -25,7 +26,8 @@ class App extends Component {                    //Nostetaan komponentit App fun
           <Header/>
     <Route path="/" exact render={() => <List data={this.state.data}/> }/>
           <Route path="/stats" component= {Stats}/>
-          <Route path="/settings" component= {Settings}/> 
+          <Route path="/settings" component= {Settings}/>
+          <Route paht="/add" render={() => <AddItem />} />
           <Menu/>
         </div>
       </Router>
