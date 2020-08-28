@@ -20,37 +20,37 @@ const testdata = [
         weight: 1.2},
 
     {   id: "4",
-        fishingdate: "2020-06-15",
+        date: "2020-06-15",
         fishtype: "Grayling",
         place: "White river",
         weight: 1.6},
 
     {   id: "5",
-        fishingdate: "2020-07-10",
+        date: "2020-07-10",
         fishtype: "Trout",
         place: "Rabbit river",
         weight: 3.2},
 
     {   id: "6",
-        fishingdate: "2020-07-20",
+        date: "2020-07-20",
         fishtype: "River salmon",
         place: "Big river",
         weight: 1.1},
      
     {   id: "7",
-        fishingdate: "2020-08-04",
+        date: "2020-08-04",
         fishtype: "Trout",
         place: "White river",
         weight: 3.1},    
 
     {   id: "8",
-        fishingdate: "2020-08-15",
+        date: "2020-08-15",
         fishtype: "Grayling",
         place: "Rabbit river",
         weight: 1.5},
 
     {   id: "9",
-        fishingdate: "2020-08-20",
+        date: "2020-08-20",
         fishtype: "Pike",
         place: "Rabbit river",
         weight: 4.5} 

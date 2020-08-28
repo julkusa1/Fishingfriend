@@ -1,0 +1,35 @@
+.additem {
+    padding: 2em;
+}
+
+.itemsform {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemsform__row {
+    display: flex;
+}
+
+.itemsform__row > div {
+    display: flexbox;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0.5em 0.3em;
+    flex: 1 1 auto;
+}
+
+.itemsform input {
+    padding: 0.3em;
+    border: 1px solid #999;
+    border-radius: 0.3em;
+    font-size: 1.2em;
+    font-family: "Nunito", sans-serif;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.itemsform__label {
+    font-size: 0.8em;
+    margin-bottom: 0.2 em;
+}
