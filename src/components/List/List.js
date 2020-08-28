@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Fishcard from "../Fishcard/Fishcard"; //Nostetaan kalakortti komponenteista
 import Content from "../Content/Content";

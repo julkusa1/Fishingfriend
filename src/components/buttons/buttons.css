@@ -49,8 +49,8 @@
 }
 
 .button--floating {
-    position: absolute;
-    bottom: 1rem;
+    position: fixed;
+    bottom: 3rem;
     right: 1rem;
     border-radius: 50%;
     font-size: 2.5rem;
