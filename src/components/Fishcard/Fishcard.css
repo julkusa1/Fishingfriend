@@ -20,7 +20,12 @@
     color: #009ccc
 }
   
-.fishcard__fish, .fishcard__place, .fishcard__weight {
+.fishcard__fish {
+    font-size: 0.9em;
+    color: #009ccc;
+}
+
+.fishcard__place, .fishcard__weight {
     font-size: 0.8em;
     color: #009ccc;
 }
