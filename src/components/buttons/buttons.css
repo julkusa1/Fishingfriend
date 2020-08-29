@@ -35,8 +35,8 @@
 }
 
 .button--secondary {
-    background-color: #ee6c02;
-    color: #fff;    
+    background-color: #0285ee;
+    color: #fff;  
 }
 
 .button--secondary:active {
@@ -51,7 +51,7 @@
 
 .button--floating {
     position: fixed;
-    bottom: 3rem;
+    bottom: 0rem;
     right: 1rem;
     border-radius: 50%;
     font-size: 2.5rem;
