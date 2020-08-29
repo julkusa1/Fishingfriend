@@ -27,7 +27,7 @@ class App extends Component {                    //Nostetaan komponentit App fun
           <Route path="/" exact render={() => <List data={this.state.data}/> }/>
           <Route path="/stats" component= {Stats}/>
           <Route path="/settings" component= {Settings}/>
-          <Route paht="/add" render={() => <AddItem />} />
+          <Route path="/add" render={() => <AddItem />} />
           <Menu/>
         </div>
       </Router>

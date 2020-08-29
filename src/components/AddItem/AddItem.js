@@ -5,13 +5,13 @@ import Button from "../buttons";
 
 import "./AddItem.css";
 
-function AddItem(props) {       //Tehdään lomake
+function AddItem(props) {       //Tehdään lomake, jolla tietoja voi lisätä
     return (
       <Content>
 
         <div className="additem">
 
-        <h2>Add new</h2>
+        <h2>~~~~Add new catch~~~~</h2>
 
         <form>
 
@@ -34,16 +34,16 @@ function AddItem(props) {       //Tehdään lomake
                     </div>
                     <div>
                         <label for="weight">Weight</label>
-                        <input type="text" name="weight" />
+                        <input type="text" name="weight" size="10" />
                     </div>
                 </div>
 
                 <div className="itemform__row">
                     <div>
-                        <button>CANCEL</button>
+                        <Button>CANCEL</Button>
                     </div>
                     <div>
-                        <button primary>ADD</button>
+                        <Button primary>ADD</Button>
                     </div>
                 </div>
 

@@ -1,18 +1,19 @@
 .button {
-    background-color: #ccc;
-    color: #000;
+    background-color: #e6f9ff;;
+    color: #009ccc;
     border: none;
     outline: none;
     padding: 0.7em;
-    margin: 0.5em;
-    border-radius: 0.2em;
-    box-shadow: rgba(0,0,0,0.5) 0px 2px 2px;
+    margin: 3em 0.3em;
+    border-radius: 0.3em;
+    box-shadow: 1px 2px 3px 1px #009ccc;
     font-weight: bold;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     opacity: 0.8;
+    font-size: 1em;
 }
 
 .button:active {
@@ -30,7 +31,7 @@
 }
 
 .button--primary:active {
-    background-color: #65b4ff;
+    background-color: #009ccc;
 }
 
 .button--secondary {
