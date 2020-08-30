@@ -1,5 +1,5 @@
 import React from "react";
-
+import { withRouter } from "react-router";
 import Button from "../buttons";
 
 import "./ItemForm.css";
@@ -18,6 +18,7 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleInputChange(event) {                                      //Tällä toiminnolla voidaan käsitellä lomakkeelta saatavaa tietoa
@@ -31,12 +32,20 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
                 [name]: value
             }
         });
-      }
+    }
 
-    handleSubmit(event) {
+    handleCancel(event) {
         event.preventDefault();
+        this.props.history.goBack();
+    }
+
+    handleSubmit(event) {                   //Tässä käsitellään lomakkeen tietoja ja
+        event.preventDefault();             //tehdään reititys Add napista etusivulle
         console.log("send form");
         let data = Object.assign({}, this.state.data);
+        data.weight = parseFloat(data.weight);
+        this.props.onFormSubmit(data);
+        this.props.history.push("/");
     }
 
     render() {                              //Tässä lomakkeen syöttökentät ja valikot
@@ -76,7 +85,7 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
 
                     <div className="itemform__row">
                         <div>
-                            <Button>CANCEL</Button>
+                            <Button onClick={this.handleCancel}>CANCEL</Button>
                         </div>
                         <div>
                             <Button type="submit" primary>ADD</Button>
@@ -90,4 +99,4 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
     }
 }
 
-export default ItemForm;
+export default withRouter(ItemForm);

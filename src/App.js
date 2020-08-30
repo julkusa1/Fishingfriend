@@ -23,6 +23,11 @@ class App extends Component {                    //Nostetaan komponentit App fun
   handleFormSubmit(newdata) {                   //Lomakkeen käsittelijä, joka lisää uudet tiedot taulukkoon
     let storeddata = this.state.data.slice();
     storeddata.push(newdata);
+    storeddata.sort((a,b) => {
+      const aDate = new Date(a.date);           //Tässä sortataan tulokset aikajärjestykseen
+      const bDate = new Date(b.date);
+      return bDate.getTime() - aDate.getTime();
+    } );
     this.setState({
       data: storeddata
     });
