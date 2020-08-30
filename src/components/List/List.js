@@ -9,7 +9,7 @@ function List(props) {
 
     let rows = props.data.map(fishinfo => {
       return (
-        <Fishcard data={fishinfo}/>   //Tässä välitetään testidata kalakorteille
+        <Fishcard data={fishinfo} key={fishinfo.id}/>   //Tässä välitetään testidata kalakorteille
       );
     }
   );
