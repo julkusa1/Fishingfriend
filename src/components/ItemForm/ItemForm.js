@@ -37,8 +37,6 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
         event.preventDefault();
         console.log("send form");
         let data = Object.assign({}, this.state.data);
-        data.weight = parceFloat(data.summa);
-        this.props.onFormSubmit(data);
     }
 
     render() {                              //Tässä lomakkeen syöttökentät ja valikot
