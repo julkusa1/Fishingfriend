@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";      //Tämä komponentti sisältää kalakortin lomaketiedot
 import { withRouter } from "react-router";
 import { v4 as uuidv4 } from "uuid";
 
@@ -63,9 +63,9 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
                         <div>
                             <label htmlFor="place">Location</label>
                             <select name="place" value={this.state.data.place} onChange={this.handleInputChange}>
-                                <option value="Bigriver">Big River</option>
-                                <option value="Rabbitriver">Rabit River</option>
-                                <option value="Whiteriver">White River</option>
+
+                                {this.props.selectList.map(item => <option value={item}>{item}</option>)}
+
                             </select>
                         </div>
                     </div>

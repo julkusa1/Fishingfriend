@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";    //Tämä komponentti sisältää menun buttonit
 import { Link } from "react-router-dom";
 
 import "./Menu.css";              //Tuodaan Menun tyylimääritteet

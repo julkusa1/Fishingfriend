@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";    //Tässä komponentissa on kalakortin rivit
 import moment from "moment";  //Tuodaan momentti
 import "./Fishcard.css";      //Tuodaan kalakortin tyylimääritteet
 

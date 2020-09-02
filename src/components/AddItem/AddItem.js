@@ -5,7 +5,7 @@ import ItemForm from "../ItemForm/ItemForm";
 
 import "./AddItem.css";
 
-function AddItem(props) {       
+function AddItem(props) {               //Tämä komponentti sisältää lomakesivun otsikon ja sisällön
     return (
       <Content>
 
@@ -13,7 +13,7 @@ function AddItem(props) {
 
         <h2>~~~~Add new catch~~~~</h2>
 
-        <ItemForm onFormSubmit={props.onFormSubmit} />
+        <ItemForm onFormSubmit={props.onFormSubmit} selectList={props.selectList} />
  
         </div>
       </Content>

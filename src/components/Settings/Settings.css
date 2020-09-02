@@ -1,0 +1,18 @@
+.settings {
+    padding: 3em;
+    color: #009ccc;
+    text-shadow: 2px 1.5px#4dd5ff;
+}
+
+.settingsForm input {
+    flex: 1 1 auto;
+    padding: 0.3em;
+    border: 1px solid #009ccc;;
+    border-radius: 0.3em;
+    font-size: 1.2em;
+    color: #009ccc;
+    background-color: #e6f9ff;
+    box-sizing: border-box;
+    box-shadow: 1px 2px 3px 1px #009ccc;
+    outline: none;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";      //Tämä komponentti sisältää kalakorttirivit ja lisäysnapin ja nostaa testidatan
 import { Link } from "react-router-dom";
 
 import Fishcard from "../Fishcard/Fishcard"; //Nostetaan kalakortti komponenteista
@@ -9,7 +9,7 @@ function List(props) {
 
     let rows = props.data.map(fishinfo => {
       return (
-        <Fishcard data={fishinfo} key={fishinfo.id}/>   //Tässä välitetään testidata kalakorteille
+        <Fishcard data={fishinfo} key={fishinfo.id}/> 
       );
     }
   );

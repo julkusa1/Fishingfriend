@@ -15,9 +15,11 @@ class App extends Component {                    //Nostetaan komponentit App fun
   constructor(props) {
     super(props);
     this.state = {
-      data: testdata
+      data: testdata,
+      selectList: ["Big River", "Rabbit River", "White River", "Cold River"]
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleSelectListForm = this.handleSelectListForm.bind(this);
   }
 
   handleFormSubmit(newdata) {                   //Lomakkeen käsittelijä, joka lisää uudet tiedot taulukkoon
@@ -32,6 +34,15 @@ class App extends Component {                    //Nostetaan komponentit App fun
       data: storeddata
     });
   }
+
+  handleSelectListForm(newitem) {
+    let selectList = this.state.selectList.slice();
+    selectList.push(newitem);
+    selectList.sort();
+    this.setState({
+      selectList: selectList
+    });
+  }
   
   render() {
     return (
@@ -40,8 +51,8 @@ class App extends Component {                    //Nostetaan komponentit App fun
           <Header/>
           <Route path="/" exact render={() => <List data={this.state.data}/> }/>
           <Route path="/stats" component= {Stats}/>
-          <Route path="/settings" component= {Settings}/>
-          <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} />} />
+          <Route path="/settings" render={() => <Settings selectList={this.state.selectList} onFormSubmit={this.handleSelectListForm} /> } />
+          <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} selectList={this.state.selectList} />} />
           <Menu/>
         </div>
       </Router>

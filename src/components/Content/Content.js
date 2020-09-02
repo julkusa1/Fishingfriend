@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";    //Tämä komponentti sisältää scrollauspalkin
 
 import "./Content.css";
 

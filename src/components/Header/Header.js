@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";    //Tässä komponentissa on headeri
 import "./Header.css";              //Tuodaan tyylimääritteet Header.css
 
 function Header(props) {          //Tässä on otsikkorivi
