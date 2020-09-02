@@ -9,6 +9,7 @@ import Stats from "./components/Stats/Stats"; //Nostetaan tilasto Appiin
 import Settings from "./components/Settings/Settings";  //Nostetaan asetukset Appiin
 import Menu from "./components/Menu/Menu";    //Nostetaan menu Appiin
 import AddItem from "./components/AddItem/AddItem"; //Nostetaan lomake Appiin
+import EditItem from "./components/EditItem/EditItem"; //Nostetaan EditItem Appiin
 
 class App extends Component {                    //Nostetaan komponentit App funktioon reitittimellä
   
@@ -24,7 +25,12 @@ class App extends Component {                    //Nostetaan komponentit App fun
 
   handleFormSubmit(newdata) {                   //Lomakkeen käsittelijä, joka lisää uudet tiedot taulukkoon
     let storeddata = this.state.data.slice();
-    storeddata.push(newdata);
+    const index = storeddata.findIndex(item => item.id === newdata.id);
+    if (index >= 0) {
+      storeddata[index] = newdata;
+    } else {
+      storeddata.push(newdata);
+    }
     storeddata.sort((a,b) => {
       const aDate = new Date(a.date);           //Tässä sortataan tulokset aikajärjestykseen
       const bDate = new Date(b.date);
@@ -53,6 +59,10 @@ class App extends Component {                    //Nostetaan komponentit App fun
           <Route path="/stats" component= {Stats}/>
           <Route path="/settings" render={() => <Settings selectList={this.state.selectList} onFormSubmit={this.handleSelectListForm} /> } />
           <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} selectList={this.state.selectList} />} />
+          <Route path="/edit/:id" render={(props) => <EditItem data={this.state.data}
+                                                                selectList={this.state.selectList}
+                                                                onFormSubmit={this.handleFormSubmit}
+                                                                {...props} /> } />
           <Menu/>
         </div>
       </Router>

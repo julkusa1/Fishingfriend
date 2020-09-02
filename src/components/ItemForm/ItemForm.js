@@ -11,14 +11,15 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
 
     constructor(props) {
         super(props);
-        this.state = {
-            data: {
-                date: "",
-                place: "Big River",
-                fishtype: "Grayling",
-                weight: 0
-            }
+        const data = props.data ? props.data : {
+            date: "",
+            place: "Big River",
+            fishtype: "Grayling",
+            weight: 0
         }
+        this.state = {
+                data: data
+            };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -64,7 +65,7 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
                             <label htmlFor="place">Location</label>
                             <select name="place" value={this.state.data.place} onChange={this.handleInputChange}>
 
-                                {this.props.selectList.map(item => <option value={item}>{item}</option>)}
+                                {this.props.selectList.map(item => <option value={item} key={item}>{item}</option>)}
 
                             </select>
                         </div>
@@ -91,7 +92,7 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
                             <Button onClick={this.handleCancel}>CANCEL</Button>
                         </div>
                         <div>
-                            <Button type="submit" primary>ADD</Button>
+                            <Button type="submit" primary>{this.state.data.id ? "SAVE" : "ADD"}</Button>
                         </div>
                     </div>
 

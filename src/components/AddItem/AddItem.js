@@ -11,7 +11,7 @@ function AddItem(props) {               //Tämä komponentti sisältää lomakes
 
         <div className="additem">
 
-        <h2>~~~~Add new catch~~~~</h2>
+        <h2>~~~ Add new catch ~~~</h2>
 
         <ItemForm onFormSubmit={props.onFormSubmit} selectList={props.selectList} />
  

@@ -15,15 +15,17 @@ function Settings(props) {
     return (
       <Content>
         <div className="settings">
-          <h2>Settings</h2>
+          <h2>~~~~~ Settings ~~~~~~</h2>
           <h3>Fishing locations</h3>
-          { props.selectList.map(item => <div key={item}>{item}</div>)}
-          <form onSubmit={handleSubmit}>
-            <div className="settingsForm">
-               <input type="text" name="place" />
-               <Button type="submit" primary>ADD</Button>
-            </div>
-          </form>
+           <div className="settings__items">
+              { props.selectList.map(item => <div key={item}>{item}</div>)}
+              <form onSubmit={handleSubmit}>
+                <div className="settingsForm">
+                  <input type="text" name="place" />
+                  <Button type="submit" primary>ADD</Button>
+                </div>
+              </form>
+          </div>
         </div>
       </Content>
     );
