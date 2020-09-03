@@ -17,7 +17,7 @@ function EditItem(props) {               //Tämä komponentti sisältää lomake
 
         <h2>~~~ Edit fishcard ~~~</h2>
 
-        <ItemForm onFormSubmit={props.onFormSubmit} selectList={props.selectList} data={itemData} />
+        <ItemForm onFormSubmit={props.onFormSubmit} selectList={props.selectList} data={itemData} onDeleteItem={props.onDeleteItem} />
  
         </div>
       </Content>

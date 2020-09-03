@@ -9,7 +9,7 @@ import "./ItemForm.css";
 
 class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi lisätä
 
-    constructor(props) {
+    constructor(props) {                    //Konstruktori lomakkeen tiedoille
         super(props);
         const data = props.data ? props.data : {
             date: "",
@@ -23,6 +23,7 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        this.handleDeleteItem = this.handleDeleteItem.bind(this);
     }
 
     handleInputChange(event) {                                      //Tällä toiminnolla voidaan käsitellä lomakkeelta saatavaa tietoa
@@ -49,6 +50,12 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
         data.weight = parseFloat(data.weight);
         data.id = data.id ? data.id : uuidv4();     //Tässä luodaan uusille kalakorteille id
         this.props.onFormSubmit(data);
+        this.props.history.push("/");
+    }
+
+    handleDeleteItem(event) {
+        event.preventDefault();
+        this.props.onDeleteItem(this.state.data.id);
         this.props.history.push("/");
     }
 
@@ -92,10 +99,17 @@ class ItemForm extends React.Component {    //Tässä lomake, jolla tietoja voi 
                             <Button onClick={this.handleCancel}>CANCEL</Button>
                         </div>
                         <div>
-                            <Button type="submit" primary>{this.state.data.id ? "SAVE" : "ADD"}</Button>
+                            <Button type="submit" primary>{this.state.data.id ? "SAVE" : "ADD"}</Button>    
                         </div>
                     </div>
 
+                        { this.props.onDeleteItem ?
+                            <div className="itemform__row">
+                                <div>
+                                    <Button onClick={this.handleDeleteItem}>DELETE</Button>
+                                </div>
+                                <div></div>
+                            </div> : "" }
                 </div>
 
             </form>

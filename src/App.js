@@ -21,6 +21,7 @@ class App extends Component {                    //Nostetaan komponentit App fun
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSelectListForm = this.handleSelectListForm.bind(this);
+    this.handleDeleteItem = this.handleDeleteItem.bind(this);
   }
 
   handleFormSubmit(newdata) {                   //Lomakkeen käsittelijä, joka lisää uudet tiedot taulukkoon
@@ -41,12 +42,20 @@ class App extends Component {                    //Nostetaan komponentit App fun
     });
   }
 
-  handleSelectListForm(newitem) {
+  handleSelectListForm(newitem) {           //Lomakeen käsittelijä, joka lisää uuden rivin ja sorttaa
     let selectList = this.state.selectList.slice();
     selectList.push(newitem);
     selectList.sort();
     this.setState({
       selectList: selectList
+    });
+  }
+
+  handleDeleteItem(id) {                  //Lomakeen käsittelijä, joka poistaa tietyllä idllä olevan tietueen
+    let storeddata = this.state.data.slice();
+    storeddata = storeddata.filter(item => item.id !== id);
+    this.setState({
+      data: storeddata
     });
   }
   
@@ -62,6 +71,7 @@ class App extends Component {                    //Nostetaan komponentit App fun
           <Route path="/edit/:id" render={(props) => <EditItem data={this.state.data}
                                                                 selectList={this.state.selectList}
                                                                 onFormSubmit={this.handleFormSubmit}
+                                                                onDeleteItem={this.handleDeleteItem}
                                                                 {...props} /> } />
           <Menu/>
         </div>
