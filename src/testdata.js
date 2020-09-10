@@ -9,7 +9,7 @@ const testdata = [
 
     {   id: "2",
         date: "2020-07-25",
-        fishtype: "Grayling",
+        fishtype: "Pike",
         place: "White river",
         weight: 1.7},
 
