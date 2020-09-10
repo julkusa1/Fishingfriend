@@ -59,13 +59,13 @@ class App extends Component {                    //Nostetaan komponentit App fun
     });
   }
   
-  render() {
+  render() {      //Nostetaan data käyttöön
     return (
       <Router> 
         <div className="App">   
           <Header/>
           <Route path="/" exact render={() => <List data={this.state.data}/> }/>
-          <Route path="/stats" component= {Stats}/>
+          <Route path="/stats" render={() => <Stats data={this.state.data} /> }/>
           <Route path="/settings" render={() => <Settings selectList={this.state.selectList} onFormSubmit={this.handleSelectListForm} /> } />
           <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} selectList={this.state.selectList} />} />
           <Route path="/edit/:id" render={(props) => <EditItem data={this.state.data}

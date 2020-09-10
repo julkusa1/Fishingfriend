@@ -1,0 +1,11 @@
+.stats {
+    padding: 2em;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+.stats_graph {
+    position: relative;
+    height: 90%;
+    width: 20em%;
+}
