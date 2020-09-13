@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";                
 import './App.css';
 import testdata from "./testdata";    //Tuodaan testidata
+import firebase from "./firebase";  //Tuodaan firebase olio
 
 import Header from "./components/Header/Header";  //Nostetaan Header komponentti Appiin
 import List from "./components/List/List";  //Nostetaan lista Appiin
@@ -16,12 +17,17 @@ class App extends Component {                    //Nostetaan komponentit App fun
   constructor(props) {
     super(props);
     this.state = {
-      data: testdata,
-      selectList: ["Big River", "Rabbit River", "White River", "Cold River"]
+      data: [],
+      selectList: ["Rabbit river", "White river", "Big river"]
     }
+    this.dbRef = firebase.firestore();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSelectListForm = this.handleSelectListForm.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
+  }
+
+  componentDidMount() {
+    this.refData = this.dbRef.collection("data");
   }
 
   handleFormSubmit(newdata) {                   //Lomakkeen käsittelijä, joka lisää uudet tiedot taulukkoon
@@ -40,6 +46,7 @@ class App extends Component {                    //Nostetaan komponentit App fun
     this.setState({
       data: storeddata
     });
+    this.refData.doc(newdata.id).set(newdata);
   }
 
   handleSelectListForm(newitem) {           //Lomakeen käsittelijä, joka lisää uuden rivin ja sorttaa
