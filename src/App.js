@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";                
 import './App.css';
 import testdata from "./testdata";    //Tuodaan testidata
-import firebase from "./firebase";  //Tuodaan firebase olio
+import firebase, { provider, auth } from "./firebase";  //Tuodaan firebase olio
 
 import Header from "./components/Header/Header";  //Nostetaan Header komponentti Appiin
 import List from "./components/List/List";  //Nostetaan lista Appiin
@@ -11,6 +11,8 @@ import Settings from "./components/Settings/Settings";  //Nostetaan asetukset Ap
 import Menu from "./components/Menu/Menu";    //Nostetaan menu Appiin
 import AddItem from "./components/AddItem/AddItem"; //Nostetaan lomake Appiin
 import EditItem from "./components/EditItem/EditItem"; //Nostetaan EditItem Appiin
+import Content from "./components/Content/Content"; //Nostetaan content Appiin
+import Button from "./components/buttons";
 
 class App extends Component {                    //Nostetaan komponentit App funktioon reitittimellä
   
@@ -18,34 +20,41 @@ class App extends Component {                    //Nostetaan komponentit App fun
     super(props);
     this.state = {
       data: [],
-      selectList: ["Rabbit river", "White river", "Big river"]
+      selectList: ["Rabbit river", "White river", "Big river"],
+      user: null,
+      error: null
     }
     this.dbRef = firebase.firestore();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSelectListForm = this.handleSelectListForm.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
+    this.login = this.login.bind(this);
   }
 
-  componentDidMount() {
-    this.refData = this.dbRef.collection("data");
+  componentDidMount() {                   //Tämä käy läpi firebasen datan
+
+    auth.onAuthStateChanged((user) => {
+      if(user) {
+        this.setState({
+          user: user
+        });
+          this.refData = this.dbRef.collection("data");
+
+          this.refData.orderBy("date","desc").onSnapshot((docs) => {
+            let data = [];
+            docs.forEach((doc) => {
+              let docdata = doc.data();
+              data.push(docdata);
+            });
+            this.setState({
+              data: data
+            });
+          });
+        }
+    });
   }
 
   handleFormSubmit(newdata) {                   //Lomakkeen käsittelijä, joka lisää uudet tiedot taulukkoon
-    let storeddata = this.state.data.slice();
-    const index = storeddata.findIndex(item => item.id === newdata.id);
-    if (index >= 0) {
-      storeddata[index] = newdata;
-    } else {
-      storeddata.push(newdata);
-    }
-    storeddata.sort((a,b) => {
-      const aDate = new Date(a.date);           //Tässä sortataan tulokset aikajärjestykseen
-      const bDate = new Date(b.date);
-      return bDate.getTime() - aDate.getTime();
-    } );
-    this.setState({
-      data: storeddata
-    });
     this.refData.doc(newdata.id).set(newdata);
   }
 
@@ -59,15 +68,43 @@ class App extends Component {                    //Nostetaan komponentit App fun
   }
 
   handleDeleteItem(id) {                  //Lomakeen käsittelijä, joka poistaa tietyllä idllä olevan tietueen
-    let storeddata = this.state.data.slice();
-    storeddata = storeddata.filter(item => item.id !== id);
-    this.setState({
-      data: storeddata
+    this.refData.doc(id).delete().then().catch(error => {console.error("Error while deleting data:", error)});
+  }
+
+  login() {                             //Tässä luodaan kirjautumisikkuna
+    auth.signInWithPopup(provider).then((result) => {
+      const user = result.user;
+      this.setState({
+        user: user,
+        error: null
+      });
+    }).catch((error) => {
+      const errorMessage = error.message;
+      this.setState({
+        error: errorMessage
+      });
     });
   }
   
-  render() {      //Nostetaan data käyttöön
-    return (
+  render() {      //Tässä ensin aloitusivu, josta kirjaudutaan sisään
+
+    if (!this.state.user) {
+      return (
+        <Router>
+          <div className="App">
+            <Header />
+            <Content>
+              <p>You are not signed in yet. </p>
+              <p><Button onClick={this.login}>Sign in</Button></p>
+              {this.state.error?<p>{this.state.error}</p>:null}
+            </Content>
+            <Menu />
+          </div>
+        </Router>
+      )                    //Jos ei olla kirjautuneena sisään niin palautetaan
+    }
+
+    return (                //Nostetaan data käyttöön
       <Router> 
         <div className="App">   
           <Header/>

@@ -1,5 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
+import  "firebase/auth";
 
   var firebaseConfig = {
     apiKey: "AIzaSyB2y0Tqwf1oZcEfCUX-TX-fq1fAdxKVPPI",
@@ -12,6 +13,9 @@ import "firebase/firestore";
   };
 
   firebase.initializeApp(firebaseConfig);
+
+  export const provider = new firebase.auth.GoogleAuthProvider(); //Otetaan käyttöön Google provaideri
+  export const auth = firebase.auth();              //Toiminnallisuus autentikointiin
 
   export default firebase;
 
