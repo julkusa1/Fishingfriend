@@ -12,7 +12,8 @@ import Menu from "./components/Menu/Menu";    //Nostetaan menu Appiin
 import AddItem from "./components/AddItem/AddItem"; //Nostetaan lomake Appiin
 import EditItem from "./components/EditItem/EditItem"; //Nostetaan EditItem Appiin
 import Content from "./components/Content/Content"; //Nostetaan content Appiin
-import Button from "./components/buttons";
+import Button from "./components/buttons";    //Nostetaan buttonit Appiin
+
 
 class App extends Component {                    //Nostetaan komponentit App funktioon reitittimellä
   
@@ -29,6 +30,7 @@ class App extends Component {                    //Nostetaan komponentit App fun
     this.handleSelectListForm = this.handleSelectListForm.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {                   //Tämä käy läpi firebasen datan
@@ -38,7 +40,7 @@ class App extends Component {                    //Nostetaan komponentit App fun
         this.setState({
           user: user
         });
-          this.refData = this.dbRef.collection("data");
+          this.refData = this.dbRef.collection("users").doc(user.uid).collection("data");
 
           this.refData.orderBy("date","desc").onSnapshot((docs) => {
             let data = [];
@@ -85,6 +87,15 @@ class App extends Component {                    //Nostetaan komponentit App fun
       });
     });
   }
+
+  logout() {
+     auth.signOut().then(() => {
+        this.setState({
+          user: null
+        });
+        this.refData = null;
+     });
+  }
   
   render() {      //Tässä ensin aloitusivu, josta kirjaudutaan sisään
 
@@ -94,9 +105,11 @@ class App extends Component {                    //Nostetaan komponentit App fun
           <div className="App">
             <Header />
             <Content>
-              <p>You are not signed in yet. </p>
-              <p><Button onClick={this.login}>Sign in</Button></p>
-              {this.state.error?<p>{this.state.error}</p>:null}
+              <div className="App__welcome">
+                <div>You are not signed in yet. </div>
+                <div><Button onClick={this.login}>Sign in</Button></div>
+                <div>{this.state.error?<p>{this.state.error}</p>:null}</div>
+              </div>
             </Content>
             <Menu />
           </div>
@@ -110,7 +123,10 @@ class App extends Component {                    //Nostetaan komponentit App fun
           <Header/>
           <Route path="/" exact render={() => <List data={this.state.data}/> }/>
           <Route path="/stats" render={() => <Stats data={this.state.data} /> }/>
-          <Route path="/settings" render={() => <Settings selectList={this.state.selectList} onFormSubmit={this.handleSelectListForm} /> } />
+          <Route path="/settings" render={() => <Settings selectList={this.state.selectList}
+                                                                onFormSubmit={this.handleSelectListForm}
+                                                                onLogout={this.logout}
+                                                                user={this.state.user} /> } />
           <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} selectList={this.state.selectList} />} />
           <Route path="/edit/:id" render={(props) => <EditItem data={this.state.data}
                                                                 selectList={this.state.selectList}

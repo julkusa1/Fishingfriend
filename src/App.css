@@ -19,3 +19,14 @@
 .App > * {
   flex: 1 1 auto;
 }
+
+.App__welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: #009ccc;
+  text-shadow: 2px 1.5px#4dd5ff;
+  font-size: 140%;
+  padding-top: 4em;
+}

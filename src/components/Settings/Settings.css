@@ -27,3 +27,27 @@
     box-shadow: 1px 2px 3px 1px #009ccc;
     outline: none;
 }
+
+.settings__profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1.5em;
+    font-size: 70%;
+}
+
+.settings__userdata img{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-left: 0.5em;
+    margin-right: 1em;
+}
+
+.settings__userdata {
+    font-size: 150%;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+}
+
